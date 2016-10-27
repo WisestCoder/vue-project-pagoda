@@ -418,7 +418,7 @@
 	    var _this = this;
 	
 	    var that = this;
-	    this.$http.get('/mock/list.json').then(function (res) {
+	    this.$http.get('/vue-project-pagoda/mock/list.json').then(function (res) {
 	      _this.list = res.data;
 	    });
 	
@@ -517,7 +517,7 @@
 	    var _this = this;
 	
 	    var that = this;
-	    this.$http.get('/mock/goodInfo.json').then(function (res) {
+	    this.$http.get('/vue-project-pagoda/mock/goodInfo.json').then(function (res) {
 	      _this.list = res.data;
 	      _this.goodList = _this.list;
 	    });
@@ -759,7 +759,7 @@
 	    var _this = this;
 	
 	    var index = location.href.split("?")[1];
-	    this.$http.get('/mock/goodInfo.json').then(function (res) {
+	    this.$http.get('/vue-project-pagoda/mock/goodInfo.json').then(function (res) {
 	      _this.list = res.data;
 	      for (var i = 0; i < res.data.length; i++) {
 	        if (index === res.data[i].goodId) {
