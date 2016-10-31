@@ -24,43 +24,43 @@ __相比angular，vue有很多优点:__
 
 ####2、项目主要内容（本项目主要有7个页面）
 
-* 引导页
+* 引导页 [http://www.takozhang.cn/vue-project-pagoda/#!/](http://www.takozhang.cn/vue-project-pagoda/#!/)
  
 引导页主要使用了swiper框架进行图片轮播
 
 ![](http://oe51jhwvd.bkt.clouddn.com/vue01.jpg) 
 
-* 主页面
+* 主页面 [http://www.takozhang.cn/vue-project-pagoda/#!/index](http://www.takozhang.cn/vue-project-pagoda/#!/index)
 
 主页面主要使用了iscroll来实现滑动，轮播图主要使用swiper，主页面的数据实用的mock数据
 
 ![](http://oe51jhwvd.bkt.clouddn.com/vue02.jpg)
 
-* 列表页
+* 列表页 [http://www.takozhang.cn/vue-project-pagoda/#!/index/list](http://www.takozhang.cn/vue-project-pagoda/#!/index/list)
 
 列表页的数据采用的是mock数据，使用iscroll来实现滑动，类别的切换主要采用数据过滤,列表页通过路由传递参数从而链接至详情页
 
 ![](http://oe51jhwvd.bkt.clouddn.com/vue03.jpg)
 
-* 详情页
+* 详情页 [http://www.takozhang.cn/vue-project-pagoda/#!/index/detail/0101](http://www.takozhang.cn/vue-project-pagoda/#!/index/detail/0101)
 
 详情页通过接受传过来的参数，再利用vue-resource插件的XMLHttpRequest来请求数据，详情页的加入购物车功能主要是采用localstorage进行本地存储
 
 ![](http://oe51jhwvd.bkt.clouddn.com/vue04.jpg)
 
-* 购物车页
+* 购物车页 [http://www.takozhang.cn/vue-project-pagoda/#!/index/shoppingCart](http://www.takozhang.cn/vue-project-pagoda/#!/index/shoppingCart)
 
 购物车使用了iscroll来实现页面的滑动，主要使用了localstorage来获取数据，并通过双向绑定来实现数据的增删
 
 ![](http://oe51jhwvd.bkt.clouddn.com/vue05.jpg)
 
-* 个人信息页
+* 个人信息页 [http://www.takozhang.cn/vue-project-pagoda/#!/index/my](http://www.takozhang.cn/vue-project-pagoda/#!/index/my)
 
 个人信息主要使用localstorage来进行存储，并通过判断localstorage中的数据来进行页面的渲染
 
 ![](http://oe51jhwvd.bkt.clouddn.com/vue07.jpg)
 
-* 登录页
+* 登录页 [http://www.takozhang.cn/vue-project-pagoda/#!/login](http://www.takozhang.cn/vue-project-pagoda/#!/login)
 
 登录页的状态、数据管理还是通过localstorage来进行存储
 
