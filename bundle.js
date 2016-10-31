@@ -72,27 +72,27 @@
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _list = __webpack_require__(28);
+	var _list = __webpack_require__(29);
 	
 	var _list2 = _interopRequireDefault(_list);
 	
-	var _shoppingCart = __webpack_require__(31);
+	var _shoppingCart = __webpack_require__(32);
 	
 	var _shoppingCart2 = _interopRequireDefault(_shoppingCart);
 	
-	var _my = __webpack_require__(37);
+	var _my = __webpack_require__(38);
 	
 	var _my2 = _interopRequireDefault(_my);
 	
-	var _detail = __webpack_require__(40);
+	var _detail = __webpack_require__(41);
 	
 	var _detail2 = _interopRequireDefault(_detail);
 	
-	var _login = __webpack_require__(43);
+	var _login = __webpack_require__(44);
 	
 	var _login2 = _interopRequireDefault(_login);
 	
-	var _store = __webpack_require__(46);
+	var _store = __webpack_require__(47);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -132,7 +132,8 @@
 	      }
 	    }
 	  },
-	  "detail": {
+	  '/detail/:id': {
+	    name: 'detail',
 	    component: _detail2.default
 	  },
 	  "login": {
@@ -364,7 +365,7 @@
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src\\scripts\\components\\main.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(27)
+	__vue_template__ = __webpack_require__(28)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -395,6 +396,14 @@
 	var _actions = __webpack_require__(22);
 	
 	var _getters = __webpack_require__(23);
+	
+	var _commonUtil = __webpack_require__(27);
+	
+	var _commonUtil2 = _interopRequireDefault(_commonUtil);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mainScroll;
 	
 	exports.default = {
 	  vuex: {
@@ -448,9 +457,11 @@
 	
 	    Vue.nextTick(function () {
 	      setTimeout(function () {
-	        new IScroll('#index-scroll', {
+	        mainScroll = new IScroll('#index-scroll', {
 	          click: true
 	        });
+	        mainScroll.refresh();
+	        console.log(1);
 	      }, 500);
 	    });
 	
@@ -472,19 +483,76 @@
 /* 27 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"main-container\" id=\"index-scroll\">\n  <div>\n    <header>\n      <div class=\"swiper-container\" id=\"lunbo\">\n        <div class=\"swiper-wrapper\">\n          <div class=\"swiper-slide\" v-for=\"item in lunboImg\">\n            <img v-bind:src=\"item\" />\n          </div>\n        </div>\n        <div class=\"swiper-pagination\"></div>\n      </div>\n    </header>\n    <nav>\n      <ul>\n          <li v-for=\"item in navInfo\">\n              <img v-bind:src=\"item.icon\">\n              <b>{{item.name}}</b>\n          </li>\n      </ul>\n    </nav>\n    <section>\n      <img v-for=\"img in list\" v-bind:src=\"img\" />\n    </section>\n  </div>\n</div>\n";
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var commonUtil = {
+	    isAllLoaded: function isAllLoaded(scope, cb) {
+	        var t_img; // 定时器
+	        var isLoad = true; // 控制变量
+	
+	        // 判断图片加载状况，加载完成后回调
+	        return isImgLoad(cb);
+	
+	        // 判断图片加载的函数
+	        function isImgLoad(callback) {
+	            // 查找所有图片，迭代处理
+	            $(scope).find('img').each(function () {
+	                // 找到为0就将isLoad设为false，并退出each
+	                if (this.height === 0) {
+	                    isLoad = false;
+	                    return false;
+	                    console.log(0);
+	                }
+	            });
+	            // 为true，没有发现为0的。加载完毕
+	            if (isLoad) {
+	                clearTimeout(t_img); // 清除定时器
+	                // 回调函数
+	                callback(scope);
+	                console.log(1);
+	                // 为false，因为找到了没有加载完成的图，将调用定时器递归
+	            } else {
+	                isLoad = true;
+	                t_img = setTimeout(function () {
+	                    isImgLoad(callback); // 递归扫描
+	                }, 100); // 我这里设置的是500毫秒就扫描一次，可以自己调整
+	            }
+	        }
+	    },
+	    myScroll: function myScroll() {
+	        var that = this;
+	        Vue.directive('scroll', function (value) {
+	            if (value) {
+	                that.isAllLoaded(value, function (value) {
+	                    new IScroll(value);
+	                });
+	            }
+	        });
+	    }
+	};
+	
+	exports.default = commonUtil;
 
 /***/ },
 /* 28 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"main-container\" id=\"index-scroll\">\n  <div>\n    <header>\n      <div class=\"swiper-container\" id=\"lunbo\">\n        <div class=\"swiper-wrapper\">\n          <div class=\"swiper-slide\" v-for=\"item in lunboImg\">\n            <img v-bind:src=\"item\" />\n          </div>\n        </div>\n        <div class=\"swiper-pagination\"></div>\n      </div>\n    </header>\n    <nav>\n      <ul>\n          <li v-for=\"item in navInfo\">\n              <img v-bind:src=\"item.icon\">\n              <b>{{item.name}}</b>\n          </li>\n      </ul>\n    </nav>\n    <section>\n      <img v-for=\"img in list\" v-bind:src=\"img\" />\n    </section>\n  </div>\n</div>\n";
+
+/***/ },
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(29)
+	__vue_script__ = __webpack_require__(30)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src\\scripts\\components\\list.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(30)
+	__vue_template__ = __webpack_require__(31)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -503,18 +571,24 @@
 	})()}
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	
+	var _commonUtil = __webpack_require__(27);
+	
+	var _commonUtil2 = _interopRequireDefault(_commonUtil);
+	
 	var _actions = __webpack_require__(22);
 	
 	var _getters = __webpack_require__(23);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var listScroll;
 	
@@ -553,6 +627,7 @@
 	      }, 500);
 	    });
 	
+	
 	    this.change(1);
 	  },
 	
@@ -583,6 +658,9 @@
 	          that.goodList = this.changeList(6);
 	          break;
 	      }
+	      setTimeout(function () {
+	        listScroll.refresh();
+	      }, 0);
 	    },
 	    changeList: function changeList(index) {
 	      var arr = [];
@@ -598,22 +676,22 @@
 	};
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"list-container\">\n  <nav>\n    <ul>\n      <li v-bind:class=\"curIndex == $index ? 'active': ''\" v-for=\"item in navInfo\" v-on:click=\"switchList($index)\">{{item}}</li>\n    </ul>\n  </nav>\n  <div class=\"goodList\" id=\"list-scroll\">\n    <ul>\n      <li v-for=\"item in goodList\" v-link=\"{path: ('/detail?'+item.goodId)}\">\n        <!-- v-link=\"{path: '/index/shoppingCart?1'}\" -->\n        <img v-bind:src=\"item.imgUrl\">\n        <div class=\"info\">\n          <p class=\"goodName\">{{item.name}}</p>\n          <!-- <p class=\"song\">及时送</p> -->\n          <p class=\"less\">不少于500g</p>\n          <p class=\"goodPrice\">￥{{item.price}}</p>\n        </div>\n      </li>\n    </ul>\n  </div>\n</div>\n";
+	module.exports = "\n<div class=\"list-container\">\n  <nav>\n    <ul>\n      <li v-bind:class=\"curIndex == $index ? 'active': ''\" v-for=\"item in navInfo\" v-on:click=\"switchList($index)\">{{item}}</li>\n    </ul>\n  </nav>\n  <div class=\"goodList\" id=\"list-scroll\">\n    <ul>\n      <li v-for=\"item in goodList\" v-link=\"{name: 'detail', params: {id: item.goodId}}\">\n        <!-- v-link=\"{path: '/index/shoppingCart?1'}\" -->\n        <img v-bind:src=\"item.imgUrl\">\n        <div class=\"info\">\n          <p class=\"goodName\">{{item.name}}</p>\n          <!-- <p class=\"song\">及时送</p> -->\n          <p class=\"less\">不少于500g</p>\n          <p class=\"goodPrice\">￥{{item.price}}</p>\n        </div>\n      </li>\n    </ul>\n  </div>\n</div>\n";
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(32)
+	__vue_script__ = __webpack_require__(33)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src\\scripts\\components\\shoppingCart.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(36)
+	__vue_template__ = __webpack_require__(37)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -632,7 +710,7 @@
 	})()}
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -641,7 +719,7 @@
 	  value: true
 	});
 	
-	var _stringify = __webpack_require__(33);
+	var _stringify = __webpack_require__(34);
 	
 	var _stringify2 = _interopRequireDefault(_stringify);
 	
@@ -756,20 +834,20 @@
 	};
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	module.exports = { "default": __webpack_require__(34), __esModule: true };
+	module.exports = { "default": __webpack_require__(35), __esModule: true };
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var core = __webpack_require__(35),
+	var core = __webpack_require__(36),
 	    $JSON = core.JSON || (core.JSON = { stringify: JSON.stringify });
 	module.exports = function stringify(it) {
 	  // eslint-disable-line no-unused-vars
@@ -777,7 +855,7 @@
 	};
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -786,22 +864,22 @@
 	if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"shoppingCart-container\">\n  <header>\n    <div class=\"tip\">购物车</div>\n    <div class=\"address\">配送至：北京市昌平区沙河</div>\n  </header>\n  <section id=\"index-scroll\" v-if=\"hasGood\">\n    <div>\n      <div class=\"allChoose\">\n        <img v-bind:src=\"idChecked?'/vue-project-pagoda/images/shoppingCart/selected_ck.png':'/vue-project-pagoda/images/shoppingCart/unselected_ck.png'\" v-on:click=\"changeCheck\" class=\"allCheck\"></span>\n        <span class=\"song\">及时送</span>\n      </div>\n      <div class=\"goodList\" >\n        <ul>\n          <li v-for=\"item in shoppingCartInfo\">\n            <img v-bind:src=\"idChecked?'/vue-project-pagoda/images/shoppingCart/selected_ck.png':'/vue-project-pagoda/images/shoppingCart/unselected_ck.png'\" class=\"check\"></span>\n            <img  v-bind:src=\"item.goodImg\" class=\"goodImg\">\n            <div class=\"info\">\n              <p class=\"goodName\">{{item.goodName}}</p>\n              <!-- <p class=\"song\">及时送</p> -->\n              <p class=\"less\">不少于500g</p>\n              <p class=\"goodPrice\">￥{{item.goodPrice}}</p>\n            </div>\n            <div class=\"todo\">\n              <div class=\"del\" v-on:click=\"deleteGood\">删除</div>\n              <div class=\"change\">\n                <span class=\"sub\" v-on:click=\"sub\" data-index={{$index}}>－</span>\n                <span class=\"num\">{{item.goodSum}}</span>\n                <span class=\"add\" v-on:click=\"add\" data-index={{$index}}>＋</span>\n              </div>\n            </div>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </section>\n  <div class=\"toCar\" v-if=\"hasGood\">\n    <p class=\"money\">合计：<span>￥{{allMoney}}</span><i>(不含运费)</i></p>\n    <p class=\"jiesuan\">结算</p>\n  </div>\n  <div class=\"noGood\" v-if=\"!hasGood\">\n    <div>\n      <img src=\"/vue-project-pagoda/images/shoppingCart/noGood.jpg\" alt=\"\">\n      <p>你的购物车空空哒~</p>\n      <p>快去选几件放进来吧！</p>\n      <div class=\"guangguang\" v-link=\"{path:'/index/list'}\">去逛逛</div>\n    </div>\n  </div>\n</div>\n";
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(38)
+	__vue_script__ = __webpack_require__(39)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src\\scripts\\components\\my.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(39)
+	__vue_template__ = __webpack_require__(40)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -820,7 +898,7 @@
 	})()}
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -859,7 +937,8 @@
 	      }, {
 	        imgUrl: "/vue-project-pagoda/images/my/icon_after_sale.png",
 	        title: "售后退款"
-	      }]
+	      }],
+	      peizhi: ["地址管理", "开具发票", "更多"]
 	    };
 	  },
 	
@@ -872,26 +951,31 @@
 	    }
 	  },
 	
-	  methods: {}
+	  methods: {
+	    exit: function exit() {
+	      this.isLogin = false;
+	      localStorage.removeItem("username");
+	    }
+	  }
 	};
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"my-container\">\n  <div class=\"header\">\n    <div v-if=\"isLogin\">\n      <img src=\"/vue-project-pagoda/images/my/img_user_photo_login.png\" alt=\"\">\n      <div class=\"username\">{{username}}</div>\n    </div>\n    <div v-if=\"!isLogin\">\n      <img src=\"/vue-project-pagoda/images/my/img_user_photo_not_login.png\" alt=\"\">\n      <div class=\"login\" v-link=\"{path:'/login'}\">登录</div>\n    </div>\n  </div>\n  <div class=\"dingdan\">\n    <div class=\"myDingdan\">\n      <span>我的订单</span>\n      <i>查看全部订单</i>\n    </div>\n    <ul class=\"menuBox\">\n      <li v-for=\"item in menuBox\">\n        <img v-bind:src=\"item.imgUrl\" alt=\"\">\n        <span>{{item.title}}</span>\n      </li>\n    </ul>\n  </div>\n  <div class=\"money\">\n    <ul>\n      <li>\n        <p><span>5</span>元</p>\n        <p>余额</p>\n        <p>去充值<img src=\"/vue-project-pagoda/images/my/icon_arrow_round.png\" alt=\"\"></p>\n      </li>\n      <li>\n        <p><span>0</span>张</p>\n        <p>优惠券</p>\n        <p>去查看<img src=\"/vue-project-pagoda/images/my/icon_arrow_round.png\" alt=\"\"></p>\n      </li>\n    </ul>\n  </div>\n</div>\n";
+	module.exports = "\n<div class=\"my-container\">\n  <div class=\"header\">\n    <div v-if=\"isLogin\">\n      <img src=\"/vue-project-pagoda/images/my/img_user_photo_login.png\" alt=\"\">\n      <div class=\"username\">{{username}}</div>\n    </div>\n    <div v-if=\"!isLogin\">\n      <img src=\"/vue-project-pagoda/images/my/img_user_photo_not_login.png\" alt=\"\">\n      <div class=\"login\" v-link=\"{path:'/login'}\">登录</div>\n    </div>\n  </div>\n  <div class=\"dingdan\">\n    <div class=\"myDingdan\">\n      <span>我的订单</span>\n      <i>查看全部订单</i>\n    </div>\n    <ul class=\"menuBox\">\n      <li v-for=\"item in menuBox\">\n        <img v-bind:src=\"item.imgUrl\" alt=\"\">\n        <span>{{item.title}}</span>\n      </li>\n    </ul>\n  </div>\n  <div class=\"grayB\"></div>\n  <div class=\"money\">\n    <ul>\n      <li>\n        <p><span>5</span>元</p>\n        <p>余额</p>\n        <p><span>去充值</span><img src=\"/vue-project-pagoda/images/my/icon_arrow_round.png\" alt=\"\"></p>\n      </li>\n      <li>\n        <p><span>0</span>张</p>\n        <p>优惠券</p>\n        <p><span>去查看</span><img src=\"/vue-project-pagoda/images/my/icon_arrow_round.png\" alt=\"\"></p>\n      </li>\n    </ul>\n  </div>\n  <div class=\"grayB\"></div>\n  <div class=\"peizhi\">\n    <ul v-for=\"item in peizhi\">\n      <li><span>{{item}}</span><img src=\"/vue-project-pagoda/images/my/icon_arrow.png\" alt=\"\"></li>\n    </ul>\n  </div>\n  <div class=\"exit\" v-if=\"isLogin\">\n    <span v-on:click=\"exit\">退出登录</span>\n  </div>\n</div>\n";
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(41)
+	__vue_script__ = __webpack_require__(42)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src\\scripts\\components\\detail.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(42)
+	__vue_template__ = __webpack_require__(43)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -910,7 +994,7 @@
 	})()}
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -919,7 +1003,7 @@
 	  value: true
 	});
 	
-	var _stringify = __webpack_require__(33);
+	var _stringify = __webpack_require__(34);
 	
 	var _stringify2 = _interopRequireDefault(_stringify);
 	
@@ -948,7 +1032,8 @@
 	  ready: function ready() {
 	    var _this = this;
 	
-	    var index = location.href.split("?")[1];
+	    var index = this.$route.params.id;
+	    console.log(this.$route.params);
 	    this.$http.get('/vue-project-pagoda/mock/goodInfo.json').then(function (res) {
 	      _this.list = res.data;
 	      for (var i = 0; i < res.data.length; i++) {
@@ -1005,22 +1090,22 @@
 	};
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"detail-box\">\n  <img v-link=\"{path: '/index/list'}\" src=\"/vue-project-pagoda/images/detail/icon_back_hover.png\" class=\"back\" alt=\"\">\n  <img src=\"/vue-project-pagoda/images/detail/icon_share.png\" class=\"share\" alt=\"\">\n  <img v-link=\"{path: '/index'}\" src=\"/vue-project-pagoda/images/detail/icon_home_hover.png\" class=\"home\" alt=\"\">\n  <div class=\"detail-container\" id=\"detail-scroll\">\n    <div>\n      <img v-bind:src=\"imgUrl\" alt=\"\" class=\"showImg\" />\n      <div class=\"info\">\n        <p class=\"goodName\">B级-南丰蜜桔</p>\n        <!-- <p class=\"song\">及时送</p> -->\n        <p class=\"less\">不少于500g</p>\n        <p class=\"goodPrice\">￥7.3</p>\n      </div>\n      <div class=\"maiguo\">\n        购买过该商品的顾客也购买过\n      </div>\n      <ul class=\"tuijianBox\">\n        <li v-for=\"item in tuijian\">\n          <img v-bind:src=\"item.imgUrl\" alt=\"\" />\n          <div class=\"info\">\n            <p class=\"goodName\">B级-南丰蜜桔</p>\n            <!-- <p class=\"song\">及时送</p> -->\n            <p class=\"less\">不少于500g</p>\n            <p class=\"goodPrice\">￥7.3</p>\n          </div>\n        </li>\n      </ul>\n    </div>\n  </div>\n  <footer>\n    <div class=\"shoppingIcon\">\n      <img v-link=\"{path: '/index/shoppingCart'}\" src=\"/vue-project-pagoda/images/detail/shopping_cart.png\" alt=\"\" />\n      <div class=\"num\">{{shoppingNum}}</div>\n    </div>\n    <div v-on:click=\"addToCar\" class=\"addTo\">加入购物车</div>\n  </footer>\n</div>\n";
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(44)
+	__vue_script__ = __webpack_require__(45)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src\\scripts\\components\\login.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(45)
+	__vue_template__ = __webpack_require__(46)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -1039,7 +1124,7 @@
 	})()}
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1072,13 +1157,13 @@
 	};
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"login-container\">\n  <header>\n    <img src=\"/vue-project-pagoda/images/login/iocn_back.png\" alt=\"\" v-link=\"{path:'/index/my'}\">\n    <div>登录</div>\n  </header>\n  <div class=\"imgShow\">\n    <img src=\"/vue-project-pagoda/images/login/login_img_logo.png\" alt=\"\">\n  </div>\n  <div class=\"inputBox\">\n    <p class=\"username\">\n      <img src=\"/vue-project-pagoda/images/login/login_icon_phone_pre.png\" />\n      <input type=\"text\" placeholder=\"请输入手机号\" v-model=\"username\">\n    </p>\n    <span class=\"checkoutUsername\">{{checkUser}}</span>\n    <p class=\"password\">\n      <img src=\"/vue-project-pagoda/images/login/login_icon_code_pre.png\" />\n      <input type=\"password\" placeholder=\"请输入验证码\" v-model=\"password\">\n      <span>获取验证码</span>\n    </p>\n    <span class=\"checkPassword\">{{checkPwd}}</span>\n  </div>\n  <div class=\"loginSubmit\">\n    <button v-on:click=\"login\" >登录</button>\n  </div>\n</div>\n";
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1087,9 +1172,9 @@
 	  value: true
 	});
 	
-	var _states = __webpack_require__(47);
+	var _states = __webpack_require__(48);
 	
-	var _mutations = __webpack_require__(48);
+	var _mutations = __webpack_require__(49);
 	
 	//提供一个初始化的 state 对象，以及一些 mutations：
 	exports.default = new Vuex.Store({
@@ -1098,7 +1183,7 @@
 	});
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1111,7 +1196,7 @@
 	};
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports) {
 
 	"use strict";

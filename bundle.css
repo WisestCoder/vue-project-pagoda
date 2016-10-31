@@ -5131,8 +5131,12 @@ a {
             font-size: .1rem;
             color: #373737;
             line-height: 10vw; }
+    .container .my-container .grayB {
+      width: 100%;
+      height: 1.2vw;
+      background-color: #F0EFF5; }
     .container .my-container .money {
-      background-color: red; }
+      margin-top: 2vw; }
       .container .my-container .money ul {
         width: 100%;
         display: -webkit-box;
@@ -5183,9 +5187,121 @@ a {
               font-size: .12rem; }
               .container .my-container .money ul li p:first-child span {
                 font-size: .16rem;
+                padding-right: 3vw;
                 font-weight: bold; }
             .container .my-container .money ul li p:nth-child(2) {
               font-size: .12rem; }
+            .container .my-container .money ul li p:nth-child(3) {
+              text-align: right;
+              padding-right: 2.4vw;
+              padding-bottom: 1.2vw; }
+              .container .my-container .money ul li p:nth-child(3) span {
+                font-size: .1rem;
+                padding-left: 3vw;
+                color: #AEAEAE; }
+              .container .my-container .money ul li p:nth-child(3) img {
+                width: 4vw;
+                height: 4vw; }
+    .container .my-container .peizhi {
+      width: 100%; }
+      .container .my-container .peizhi ul li {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        width: 100%;
+        height: 14vw;
+        padding: 0 3vw;
+        position: relative; }
+        .container .my-container .peizhi ul li::after {
+          pointer-events: none;
+          position: absolute;
+          z-index: 999;
+          top: 0;
+          left: 0;
+          overflow: hidden;
+          content: " ";
+          border-color: #F1F0F6;
+          border-style: solid;
+          border-width: 0 0 1px 0;
+          -webkit-transform-origin: 0 0;
+          transform-origin: 0 0; }
+          @media (max--moz-device-pixel-ratio: 1.49), (-webkit-max-device-pixel-ratio: 1.49), (max-device-pixel-ratio: 1.49), (max-resolution: 143dpi), (max-resolution: 1.49dppx) {
+            .container .my-container .peizhi ul li::after {
+              width: 100%;
+              height: 100%; } }
+          @media (min--moz-device-pixel-ratio: 1.5) and (max--moz-device-pixel-ratio: 2.49), (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 2.49), (min-device-pixel-ratio: 1.5) and (max-device-pixel-ratio: 2.49), (min-resolution: 144dpi) and (max-resolution: 239dpi), (min-resolution: 1.5dppx) and (max-resolution: 2.49dppx) {
+            .container .my-container .peizhi ul li::after {
+              width: 200%;
+              height: 200%;
+              -webkit-transform: scale(0.5);
+              transform: scale(0.5); } }
+          @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+            .container .my-container .peizhi ul li::after {
+              width: 300%;
+              height: 300%;
+              -webkit-transform: scale(0.33333);
+              transform: scale(0.33333); } }
+        .container .my-container .peizhi ul li:last-child {
+          border: none; }
+        .container .my-container .peizhi ul li span {
+          font-size: .12rem;
+          line-height: 14vw;
+          color: #393939; }
+        .container .my-container .peizhi ul li img {
+          width: 2vw;
+          height: 3.6vw;
+          margin-top: 5.2vw; }
+    .container .my-container .exit {
+      padding: 0 3vw;
+      margin-top: 3vw; }
+      .container .my-container .exit span {
+        display: block;
+        line-height: 10vw;
+        text-align: center;
+        width: 100%;
+        height: 10vw;
+        color: #80AF1E;
+        position: relative;
+        border-radius: 2vw; }
+        .container .my-container .exit span::after {
+          pointer-events: none;
+          position: absolute;
+          z-index: 999;
+          top: 0;
+          left: 0;
+          overflow: hidden;
+          content: " ";
+          border-color: #80AF1E;
+          border-style: solid;
+          border-width: 2px;
+          -webkit-transform-origin: 0 0;
+          transform-origin: 0 0; }
+          @media (max--moz-device-pixel-ratio: 1.49), (-webkit-max-device-pixel-ratio: 1.49), (max-device-pixel-ratio: 1.49), (max-resolution: 143dpi), (max-resolution: 1.49dppx) {
+            .container .my-container .exit span::after {
+              width: 100%;
+              height: 100%;
+              border-radius: 2vw; } }
+          @media (min--moz-device-pixel-ratio: 1.5) and (max--moz-device-pixel-ratio: 2.49), (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 2.49), (min-device-pixel-ratio: 1.5) and (max-device-pixel-ratio: 2.49), (min-resolution: 144dpi) and (max-resolution: 239dpi), (min-resolution: 1.5dppx) and (max-resolution: 2.49dppx) {
+            .container .my-container .exit span::after {
+              width: 200%;
+              height: 200%;
+              -webkit-transform: scale(0.5);
+              transform: scale(0.5);
+              border-radius: 4vw; } }
+          @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+            .container .my-container .exit span::after {
+              width: 300%;
+              height: 300%;
+              -webkit-transform: scale(0.33333);
+              transform: scale(0.33333);
+              border-radius: 6vw; } }
 @charset "UTF-8";
 /**
  * Yo框架全局base定义
