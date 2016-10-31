@@ -872,14 +872,14 @@
 	    }
 	  },
 	
-	  method: {}
+	  methods: {}
 	};
 
 /***/ },
 /* 39 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"my-container\">\n  <div class=\"header\">\n    <div v-if=\"isLogin\">\n      <img src=\"/vue-project-pagoda/images/my/img_user_photo_login.png\" alt=\"\">\n      <div class=\"username\">{{username}}</div>\n    </div>\n    <div v-if=\"!isLogin\">\n      <img src=\"/vue-project-pagoda/images/my/img_user_photo_not_login.png\" alt=\"\">\n      <div class=\"login\">登录</div>\n    </div>\n  </div>\n  <div class=\"dingdan\">\n    <div class=\"myDingdan\">\n      <span>我的订单</span>\n      <i>查看全部订单</i>\n    </div>\n    <ul class=\"menuBox\">\n      <li v-for=\"item in menuBox\">\n        <img v-bind:src=\"item.imgUrl\" alt=\"\">\n        <span>{{item.title}}</span>\n      </li>\n    </ul>\n  </div>\n  <div class=\"money\">\n    <ul>\n      <li>\n        <p><span>5</span>元</p>\n        <p>余额</p>\n        <p>去充值<img src=\"/vue-project-pagoda/images/my/icon_arrow_round.png\" alt=\"\"></p>\n      </li>\n      <li>\n        <p><span>0</span>张</p>\n        <p>优惠券</p>\n        <p>去查看<img src=\"/vue-project-pagoda/images/my/icon_arrow_round.png\" alt=\"\"></p>\n      </li>\n    </ul>\n  </div>\n</div>\n";
+	module.exports = "\n<div class=\"my-container\">\n  <div class=\"header\">\n    <div v-if=\"isLogin\">\n      <img src=\"/vue-project-pagoda/images/my/img_user_photo_login.png\" alt=\"\">\n      <div class=\"username\">{{username}}</div>\n    </div>\n    <div v-if=\"!isLogin\">\n      <img src=\"/vue-project-pagoda/images/my/img_user_photo_not_login.png\" alt=\"\">\n      <div class=\"login\" v-link=\"{path:'/login'}\">登录</div>\n    </div>\n  </div>\n  <div class=\"dingdan\">\n    <div class=\"myDingdan\">\n      <span>我的订单</span>\n      <i>查看全部订单</i>\n    </div>\n    <ul class=\"menuBox\">\n      <li v-for=\"item in menuBox\">\n        <img v-bind:src=\"item.imgUrl\" alt=\"\">\n        <span>{{item.title}}</span>\n      </li>\n    </ul>\n  </div>\n  <div class=\"money\">\n    <ul>\n      <li>\n        <p><span>5</span>元</p>\n        <p>余额</p>\n        <p>去充值<img src=\"/vue-project-pagoda/images/my/icon_arrow_round.png\" alt=\"\"></p>\n      </li>\n      <li>\n        <p><span>0</span>张</p>\n        <p>优惠券</p>\n        <p>去查看<img src=\"/vue-project-pagoda/images/my/icon_arrow_round.png\" alt=\"\"></p>\n      </li>\n    </ul>\n  </div>\n</div>\n";
 
 /***/ },
 /* 40 */
@@ -1064,6 +1064,8 @@
 	    login: function login() {
 	      if (this.username.trim() != "" && this.password.trim() != "") {
 	        localStorage.setItem("username", this.username);
+	        var router = new VueRouter();
+	        router.go({ path: '/index/my' });
 	      }
 	    }
 	  }
@@ -1073,7 +1075,7 @@
 /* 45 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"login-container\">\n  <header>\n    <img src=\"/vue-project-pagoda/images/login/iocn_back.png\" alt=\"\">\n    <div>登录</div>\n  </header>\n  <div class=\"imgShow\">\n    <img src=\"/vue-project-pagoda/images/login/login_img_logo.png\" alt=\"\">\n  </div>\n  <div class=\"inputBox\">\n    <p class=\"username\">\n      <img src=\"/vue-project-pagoda/images/login/login_icon_phone_pre.png\" />\n      <input type=\"text\" placeholder=\"请输入手机号\" v-model=\"username\">\n    </p>\n    <span class=\"checkoutUsername\">{{checkUser}}</span>\n    <p class=\"password\">\n      <img src=\"/vue-project-pagoda/images/login/login_icon_code_pre.png\" />\n      <input type=\"password\" placeholder=\"请输入验证码\" v-model=\"password\">\n      <span>获取验证码</span>\n    </p>\n    <span class=\"checkPassword\">{{checkPwd}}</span>\n  </div>\n  <div class=\"loginSubmit\">\n    <button v-on:click=\"login\" v-link=\"{path:'/index/my'}\">登录</button>\n  </div>\n</div>\n";
+	module.exports = "\n<div class=\"login-container\">\n  <header>\n    <img src=\"/vue-project-pagoda/images/login/iocn_back.png\" alt=\"\" v-link=\"{path:'/index/my'}\">\n    <div>登录</div>\n  </header>\n  <div class=\"imgShow\">\n    <img src=\"/vue-project-pagoda/images/login/login_img_logo.png\" alt=\"\">\n  </div>\n  <div class=\"inputBox\">\n    <p class=\"username\">\n      <img src=\"/vue-project-pagoda/images/login/login_icon_phone_pre.png\" />\n      <input type=\"text\" placeholder=\"请输入手机号\" v-model=\"username\">\n    </p>\n    <span class=\"checkoutUsername\">{{checkUser}}</span>\n    <p class=\"password\">\n      <img src=\"/vue-project-pagoda/images/login/login_icon_code_pre.png\" />\n      <input type=\"password\" placeholder=\"请输入验证码\" v-model=\"password\">\n      <span>获取验证码</span>\n    </p>\n    <span class=\"checkPassword\">{{checkPwd}}</span>\n  </div>\n  <div class=\"loginSubmit\">\n    <button v-on:click=\"login\" >登录</button>\n  </div>\n</div>\n";
 
 /***/ },
 /* 46 */
