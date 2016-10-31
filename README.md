@@ -6,7 +6,7 @@
 
 ##更多资料详情请咨询本人[博客](http://www.takozhang.cn)
 
-自从vue退出之后，有越来越多的项目在使用 vue。这些项目里面，有桌面端，也有移动端，有面向用户的，也有后台系统。实践方案的话，vue + webpack + vue-router + vue-resource。
+自从vue退出之后，有越来越多的项目在使用 vue。这些项目里面，有桌面端，也有移动端，有面向用户的，也有后台系统。实践方案的话，`vue + webpack + vue-router + vue-resource。`
 
 __相比angular，vue有很多优点:__
 
@@ -20,11 +20,11 @@ __相比angular，vue有很多优点:__
 
 ####1、项目搭建环境
 
-* 本项目主要使用vue + webpack + vue-router + vue-resource搭建
+* 本项目主要使用`vue + webpack + vue-router + vue-resource`搭建
 
 ####2、项目运行环境
 
-* node环境下使用git clone https://github.com/dushao103500/vue-project-pagoda.git 将文件下载至本地，并在目录的上一层启动服务，端口默认为80
+* node环境下使用`git clone https://github.com/dushao103500/vue-project-pagoda.git` 将文件下载至本地，并在目录的上一层启动服务，端口默认为80
 
 ####3、项目主要内容（本项目主要有7个页面）
 
