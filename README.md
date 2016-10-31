@@ -8,7 +8,7 @@
 
 自从vue退出之后，有越来越多的项目在使用 vue。这些项目里面，有桌面端，也有移动端，有面向用户的，也有后台系统。实践方案的话，vue + webpack + vue-router + vue-resource。
 
-__ 相比angular，vue有很多优点:__
+__相比angular，vue有很多优点:__
 
 * 在 API 与设计两方面上 Vue.js 都比 Angular 简单得多，因此你可以快速地掌握它的全部特性并投入开发。
 
