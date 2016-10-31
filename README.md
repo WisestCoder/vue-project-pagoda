@@ -22,7 +22,11 @@ __相比angular，vue有很多优点:__
 
 * 本项目主要使用vue + webpack + vue-router + vue-resource搭建
 
-####2、项目主要内容（本项目主要有7个页面）
+####2、项目运行环境
+
+* node环境下使用git clone https://github.com/dushao103500/vue-project-pagoda.git 将文件下载至本地，并在目录的上一层启动服务，端口默认为80
+
+####3、项目主要内容（本项目主要有7个页面）
 
 * 引导页 [http://www.takozhang.cn/vue-project-pagoda/#!/](http://www.takozhang.cn/vue-project-pagoda/#!/)
  
