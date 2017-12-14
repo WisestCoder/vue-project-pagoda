@@ -2,9 +2,9 @@
 
 ## 作者：杜少
 
-## 项目展示地址：[http://www.takozhang.cn/vue-project-pagoda/#!/](http://www.takozhang.cn/vue-project-pagoda/#!/)
+## 项目展示地址：[https://dushao103500.github.io/vue-project-pagoda](https://dushao103500.github.io/vue-project-pagoda/#!/)
 
-## 更多资料详情请咨询本人[博客](http://www.takozhang.cn)
+## 更多资料详情请咨询本人[博客](https://dushao103500.github.io)
 
 自从vue退出之后，有越来越多的项目在使用 vue。这些项目里面，有桌面端，也有移动端，有面向用户的，也有后台系统。实践方案的话，`vue + webpack + vue-router + vue-resource。`
 
